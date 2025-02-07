@@ -47,17 +47,19 @@ void *worker_thread(void *numPointsPerThread)
 {
 	int numOfPoints = *(int*)numPointsPerThread;
 	int numOfHits = 0;
-	unsigned int seed = time(NULL);
+	unsigned int seed = time(NULL) + pthread_self();
 
 	for(int i = 0; i < numOfPoints; i++)
 		{
 			// Use Monte Carlo Simulation
-			float x = (rand_r(&seed)/RAND_MAX) * 2.0 - 1.0;
-			float y = (rand_r(&seed)/RAND_MAX) * 2.0 - 1.0;
+			float x = ((float)rand_r(&seed)/(float)RAND_MAX) * 2.0 - 1.0;
+			float y = ((float)rand_r(&seed)/(float)RAND_MAX) * 2.0 - 1.0;
+
 			//Check to see if point is in the
 			if ((x*x) + (y*y) <= 1.0)
 			{
 				numOfHits++;
+				printf("hit\n");
 			}
 		}
 

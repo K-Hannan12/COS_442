@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build",
+        "type": "shell",
+        "command": "/usr/bin/gcc",
+        "args": [
+          "-g", 
+          "HW2.c", 
+          "-o", "main"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": ["$gcc"],
+        "detail": "Generated task for building C program"
+      }
+    ]
+  }
+  
