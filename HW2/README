@@ -1,0 +1,22 @@
+Kaleb Hannan
+COS 442
+HW2
+2/10/2025
+
+#Overview
+This Program Uses the Monte Carlo simulation to calculate the Value of PI
+
+We are doing to test multi threading to see the diffence in time when running the program using 
+differnt number of treads.
+
+# What you need
+gcc Compiler
+
+#Resorces
+For help with pthreads_join to wait for the threads to finish excuting I used the 
+OpenGroud.org pthread_join page.(https://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_join.html)
+
+I used the Code from week 3 Lecture 6 in my program as the boiler plate code for my project and
+for help with the basics of pthreads and pthread mutexes.
+
+
