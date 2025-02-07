@@ -19,4 +19,9 @@ OpenGroud.org pthread_join page.(https://pubs.opengroup.org/onlinepubs/009695399
 I used the Code from week 3 Lecture 6 in my program as the boiler plate code for my project and
 for help with the basics of pthreads and pthread mutexes.
 
+To help me get the correct formula to generate a number between -1 and 1 I use this artical. (https://www.geeksforgeeks.org/generate-a-random-number-between-0-and-1/)
+
+I used Lecture 5 slides to get the formula for the Monte carlo simulation.
+
+To calculate the time in seconds that it took my program to run (https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/)
 
