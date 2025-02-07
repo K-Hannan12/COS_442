@@ -13,7 +13,7 @@
 // Globle vars
 int Total_Hits = 0;
 void *worker_thread(void *);
-pthread_mutex_t mutex ;
+pthread_mutex_t mutex;
 
 int main()
 {
