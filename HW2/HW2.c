@@ -50,8 +50,6 @@ void *worker_thread(void *numPointsPerThread)
 	int numOfHits = 0;
 	unsigned int seed = time(NULL) + pthread_self();
 
-	printf("Thread Created\n");
-
 	for(int i = 0; i < numOfPoints; i++)
 		{
 			// Use Monte Carlo Simulation
