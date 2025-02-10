@@ -41,6 +41,7 @@ int main()
 	double time = ((double) (end - start))/ CLOCKS_PER_SEC;
 	printf("Pi == %f\n",pi);
 	printf("Time == %f\n",time);
+	printf("NumHits == %d\n",Total_Hits);
 }
 // Worker thread
 void *worker_thread(void *numPointsPerThread)
@@ -59,7 +60,6 @@ void *worker_thread(void *numPointsPerThread)
 			if ((x*x) + (y*y) <= 1.0)
 			{
 				numOfHits++;
-				printf("hit\n");
 			}
 		}
 
