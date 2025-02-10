@@ -9,8 +9,18 @@ This Program Uses the Monte Carlo simulation to calculate the Value of PI
 We are doing to test multi threading to see the diffence in time when running the program using 
 differnt number of treads.
 
+This program takes no inputs and outputs the estimated value of Pi the time in seconds that the program takes to run
+and the number of points in the Circle as "Total Hits".
+
+To change the number of threads in the program change the NumThreads value.
+To change the number of point in the program change the NumPoints Value.
+
 # What you need
 gcc Compiler
+
+# How to Run 
+1. Run the make file using the command "make".
+2. Run the program using the command "./hw2".
 
 #Resorces
 For help with pthreads_join to wait for the threads to finish excuting I used the 
