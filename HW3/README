@@ -1,0 +1,39 @@
+Kaleb Hannan
+COS 442
+HW3
+2/17/2025
+
+#Overview
+This Program Uses the Monte Carlo simulation to calculate the Value of PI
+
+We are doing to test multi threading to see the diffence in time when running the program using 
+differnt number of treads.
+
+This program takes no inputs and outputs the estimated value of Pi the time in seconds that the program takes to run
+and the number of points in the Circle as "Total Hits".
+
+This Program was run and tested using a 16 CPU instance Running in the Jetstream Cloud
+
+To change the number of threads in the program change the NumThreads value.
+To change the number of point in the program change the NumPoints Value.
+
+# What you need
+gcc Compiler
+
+# How to Run 
+1. Run the make file using the command "make".
+2. Run the program using the command "./hw3".
+
+#Resorces
+For help with pthreads_join to wait for the threads to finish excuting I used the 
+OpenGroud.org pthread_join page.(https://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_join.html)
+
+I used the Code from week 3 Lecture 6 in my program as the boiler plate code for my project and
+for help with the basics of pthreads and pthread mutexes.
+
+To help me get the correct formula to generate a number between -1 and 1 I use this artical. (https://www.geeksforgeeks.org/generate-a-random-number-between-0-and-1/)
+
+I used Lecture 5 slides to get the formula for the Monte carlo simulation.
+
+To calculate the time in seconds that it took my program to run (https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/)
+
