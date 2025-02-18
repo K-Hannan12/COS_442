@@ -35,5 +35,5 @@ To help me get the correct formula to generate a number between -1 and 1 I use t
 
 I used Lecture 5 slides to get the formula for the Monte carlo simulation.
 
-To calculate the time in seconds that it took my program to run (https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/)
+To calculate the time in seconds that it took my program to run I used this artical. (https://c-for-dummies.com/blog/?p=4236)
 
