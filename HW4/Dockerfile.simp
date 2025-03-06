@@ -1,4 +1,4 @@
 FROM python:3.9-slim-buster
-RUN pip install python
+RUN pip install flask
 COPY . .
 CMD ["python", "simp.py"]
