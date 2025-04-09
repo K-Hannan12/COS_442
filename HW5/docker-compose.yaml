@@ -1,12 +1,29 @@
 services:
 #this will need to change when I create the apps
-  flasker:
-    build: .
+  temp:
+    build:
+      context: ./Temp
+      dockerfile: Dockerfile
     expose:
-      - "5021"
-    deploy:
-      replicas: 2
-
+      - "5005"
+  wind:
+    build:
+      context: ./Wind
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
+  humidity:
+    build: 
+      context: ./Humidity
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
+  weatherman:
+    build:
+      context: ./Weatherman
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
   nginx:
     image: nginx:latest
     ports:
