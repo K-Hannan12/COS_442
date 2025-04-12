@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def humidity():
     num = random.randint(0, 98)
-    return f'’humidity = {num}'
+    return f'humidity = {num}'
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@ def weatherman():
     responseTemp = requests.get("http://temp:5005/")
     responseWind = requests.get("http://wind:5005/")
     responseHumidity = requests.get("http://humidity:5005/")
-    return f'wind: {responseWind.text}\ntemp: {responseTemp.text}\nhumidity: {responseHumidity.text}'
+    return f'wind: {responseWind.text.split("= ")[1]}</br>temp: {responseTemp.text.split("= ")[1]}</br>humidity: {responseHumidity.text.split("= ")[1]}'
 
 
 if __name__ == '__main__':
