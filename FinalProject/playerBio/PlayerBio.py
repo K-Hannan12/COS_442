@@ -11,3 +11,9 @@ def getplayerBio(player_name):
     if playerBio is None:
         return 'Player not found', 404
     return str(playerBio), 200
+
+@app.route('/storeplayerBio/<player_name>/<player_bio>')
+def storeplayerBio(player_name, player_bio):
+    # This will need to be changed to use the db correctly but is here as a placeholder
+    redisDB.set(player_name, player_bio)
+    return 'Player bio stored', 200
