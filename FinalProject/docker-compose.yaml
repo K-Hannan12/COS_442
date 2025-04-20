@@ -1,12 +1,12 @@
 services:
 #this will need to change when I create the apps
-  playerReport:
+  player-report:
     build:
       context: ./playerReport
       dockerfile: Dockerfile
     expose:
       - "5005"
-  playerBio:
+  player-bio:
     build:
       context: ./playerBio
       dockerfile: Dockerfile

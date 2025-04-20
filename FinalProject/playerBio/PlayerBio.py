@@ -8,13 +8,15 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 def getplayerBio(player_name):
     # This will need to be changed to use the db correctly but is here as a placeholder
     playerBio = {
-    'name': 'Kaleb Hannan',
-    'age': '28',
-    'height': "6'2\"",
-    'weight': '210 lbs',
-    'position': 'Left Field',
-    'team': 'Red Sox',
-    'number': '12',
+    'name': "Kaleb Hannan",
+    'age': "28",
+    'height': "6 feet 2 inches",
+    'weight': "210 lbs",
+    'position': "Left Field",
+    'team': "Red Sox",
+    'number': "12",
+    'bats': "Left",
+    'throws': "Left",
     'headshot': 'https://via.placeholder.com/200x250.png?text=Headshot'
 }
     #playerBio = redisDB.hget(player_name)
@@ -27,3 +29,6 @@ def storeplayerBio(player_name, player_bio):
     # This will need to be changed to use the db correctly but is here as a placeholder
     redisDB.set(player_name, player_bio)
     return 'Player bio stored', 200
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5005)

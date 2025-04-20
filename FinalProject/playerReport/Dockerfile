@@ -2,4 +2,4 @@ FROM python
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
-CMD [ "python", " playerReport.py" ]
+CMD [ "python", "playerReport.py" ]
