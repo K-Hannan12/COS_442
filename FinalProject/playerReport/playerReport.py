@@ -46,7 +46,7 @@ getPlayerHTML = """
     <p><b>Throws</b>: {{ playerBio.Throws }}</p>
     <p><b>Team</b>: {{ playerBio.team }}</p>
     <p><b>Number</b>: {{ playerBio.number }}</p>
-    </br>
+    
     <h3>Batting Stats</h3>
     <table>
         <thead>
@@ -64,9 +64,45 @@ getPlayerHTML = """
                 <th>Slugging Percentage</th>
             </tr>
         </thead>
+        <tbody>
+            <tr>
+                <td>{{ battingStats.atBats }}</td>
+                <td>{{ battingStats.runs }}</td>
+                <td>{{ battingStats.hits }}</td>
+                <td>{{ battingStats.homeRuns }}</td>
+                <td>{{ battingStats.runsBattedIn }}</td>
+                <td>{{ battingStats.walks }}</td>
+                <td>{{ battingStats.strikeOuts }}</td>
+                <td>{{ battingStats.stolenBases }}</td>
+                <td>{{ battingStats.battingAverage }}</td>
+                <td>{{ battingStats.onBasePercentage }}</td>
+                <td>{{ battingStats.sluggingPercentage }}</td>
+            </tr>
+        </tbody>
+     </table>
 
-    </br>
     <h3>Fielding and Pitching Stats </h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Games Played</th>
+                <th>Games Started</th>
+                <th>Innings At Position</th>
+                <th>Put Outs</th>
+                <th>Assists</th>
+                <th>Errors</th>
+                <th>Double Plays</th>
+                <th>Fielding Percentage</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Earned Run Average</th>
+                <th>Saves</th>
+                <th>Strike Outs</th>
+                <th>Walks Allowed</th>
+                <th>Hits Allowed</th>
+            </tr>
+        </thead>
+    </table>
 </body>
 </html>
 """
@@ -78,6 +114,7 @@ def getplayer_report(player_name):
     responseBio = requests.get("http://player-bio:5005/getplayerBio/{player_name}")
     if responseBio.status_code != 200:
         return f'Error: {responseBio.status_code}'
+    
     # This gets the player bio from the playerBio service and splits it into a dictionary
     dataSplit = responseBio.text.split('{')
     dataSplit = dataSplit[1].split(',')
@@ -90,7 +127,7 @@ def getplayer_report(player_name):
     number = dataSplit[6].split(':', 1)[1].replace("'", "")
     bats = dataSplit[7].split(':', 1)[1].replace("'", "")
     throws = dataSplit[8].split(':', 1)[1].replace("'", "")
-    headshot = dataSplit[9].split(':', 1)[1].replace("'", "")
+    headshot = dataSplit[9].split(':', 1)[1].replace("'", "").replace("}", "")
     playerBio = {
         'name': name,
         'age': age,
@@ -103,35 +140,39 @@ def getplayer_report(player_name):
         'Throws': throws,
         'headshot': headshot
     }
+
     # Get the players batting stats from the batting service
-    #responseBatting = requests.get("http://batting:5005/getBattingStats/{player_name}")
-    #if responseBatting.status_code != 200:
-    #    return f'Error: {responseBatting.status_code}'
-    #dataSplit = responseBatting.text.split(',')
-    #atBats = dataSplit[0].split('=')[1]
-    #runs = dataSplit[1].split('=')[1]
-    #hits = dataSplit[2].split('=')[1]
-    #homeRuns = dataSplit[3].split('=')[1]
-    #runsBattedIn = dataSplit[4].split('=')[1]
-    #walks = dataSplit[5].split('=')[1]
-    #strikeOuts = dataSplit[6].split('=')[1]
-    #stolenBases = dataSplit[7].split('=')[1]
-    #battingAverage = dataSplit[8].split('=')[1]
-    #onBasePercentage = dataSplit[9].split('=')[1]
-    #sluggingPercentage = dataSplit[10].split('=')[1]
-    #battingStats = {
-    #    'atBats': atBats,
-    #    'runs': runs,
-    #    'hits': hits,
-    #    'homeRuns': homeRuns,
-    #    'runsBattedIn': runsBattedIn,
-    #    'walks': walks,
-    #    'strikeOuts': strikeOuts,
-    #    'stolenBases': stolenBases,
-    #    'battingAverage': battingAverage,
-    #    'onBasePercentage': onBasePercentage,
-    #    'sluggingPercentage': sluggingPercentage
-    #}
+    responseBatting = requests.get("http://player-batting:5005/getplayerBatting/{player_name}")
+    if responseBatting.status_code != 200:
+        return f'Error: {responseBatting.status_code}'
+    
+    # Format batting stats and storing them in a dictionary
+    dataSplit = responseBatting.text.split('{')
+    dataSplit = dataSplit[1].split(',')
+    atBats = dataSplit[0].split(':')[1]
+    runs = dataSplit[1].split(':')[1]
+    hits = dataSplit[2].split(':')[1]
+    homeRuns = dataSplit[3].split(':')[1]
+    runsBattedIn = dataSplit[4].split(':')[1]
+    walks = dataSplit[5].split(':')[1]
+    strikeOuts = dataSplit[6].split(':')[1]
+    stolenBases = dataSplit[7].split(':')[1]
+    battingAverage = dataSplit[8].split(':')[1].replace("'", "")
+    onBasePercentage = dataSplit[9].split(':')[1].replace("'", "")
+    sluggingPercentage = dataSplit[10].split(':')[1].replace("'", "").replace("}", "")
+    battingStats = {
+        'atBats': atBats,
+        'runs': runs,
+        'hits': hits,
+        'homeRuns': homeRuns,
+        'runsBattedIn': runsBattedIn,
+        'walks': walks,
+        'strikeOuts': strikeOuts,
+        'stolenBases': stolenBases,
+        'battingAverage': battingAverage,
+        'onBasePercentage': onBasePercentage,
+        'sluggingPercentage': sluggingPercentage
+    }
 
     # Get the players fielding and pitching stats from the fielding-pitching service
     #responseFielding_pitching = requests.get("http://fielding-pitching:5005/getFielding-pitchingStats/{player_name}")
@@ -170,7 +211,7 @@ def getplayer_report(player_name):
     #    'walksAllowed': walksAllowed,
     #    'hitsAllowed': hitsAllowed
     #}
-    return render_template_string(getPlayerHTML, playerBio=playerBio)
+    return render_template_string(getPlayerHTML, playerBio=playerBio, battingStats=battingStats)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)

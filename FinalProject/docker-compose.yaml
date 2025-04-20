@@ -12,6 +12,12 @@ services:
       dockerfile: Dockerfile
     expose:
       - "5005"
+  player-batting:
+    build:
+      context: ./playerBatting
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
   nginx:
     image: nginx:latest
     ports:
