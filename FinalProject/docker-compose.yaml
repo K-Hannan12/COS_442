@@ -6,6 +6,12 @@ services:
       dockerfile: Dockerfile
     expose:
       - "5005"
+  playerBio:
+    build:
+      context: ./playerBio
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
   nginx:
     image: nginx:latest
     ports:
