@@ -18,6 +18,12 @@ services:
       dockerfile: Dockerfile
     expose:
       - "5005"
+  player-fielding-pitching:
+    build:
+      context: ./playerFieldingPitching
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
   nginx:
     image: nginx:latest
     ports:
