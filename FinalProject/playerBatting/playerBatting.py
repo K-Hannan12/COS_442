@@ -25,10 +25,10 @@ def getplayerBatting(player_name):
     #    return 'Player not found', 404
     return str(playerBatting), 200
 
-@app.route('/storeplayerBatting/<player_name>/<player_batting>')
-def storeplayerBio(player_name, player_batting):
+@app.route('/storeplayerBatting', methods=['POST'])
+def storeplayerBatting():
     # This will need to be changed to use the db correctly but is here as a placeholder
-    redisDB.set(player_name, player_batting)
+    #redisDB.set()
     return 'Player bio stored', 200
 
 if __name__ == '__main__':

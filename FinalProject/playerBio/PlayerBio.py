@@ -17,17 +17,17 @@ def getplayerBio(player_name):
     'number': "12",
     'bats': "Left",
     'throws': "Left",
-    'headshot': 'https://via.placeholder.com/200x250.png?text=Headshot'
+    'headshot': 'https://via.placeholder.com/120x150.png?text=Kaleb'
 }
     #playerBio = redisDB.hget(player_name)
     #if playerBio is None:
     #    return 'Player not found', 404
     return str(playerBio), 200
 
-@app.route('/storeplayerBio/<player_name>/<player_bio>')
-def storeplayerBio(player_name, player_bio):
+@app.route('/storeplayerBio', methods=['POST'])
+def storeplayerBio():
     # This will need to be changed to use the db correctly but is here as a placeholder
-    redisDB.set(player_name, player_bio)
+    #redisDB.set(player_name, player_bio)
     return 'Player bio stored', 200
 
 if __name__ == '__main__':

@@ -29,10 +29,10 @@ def getplayerFieldingPitching(player_name):
     #    return 'Player not found', 404
     return str(playerFieldingPitching), 200
 
-@app.route('/storeplayerFieldingPitching/<player_name>/<player_fieldingPitching>')
-def storeplayerBio(player_name, player_fieldingPitching):
+@app.route('/storeplayerFieldingPitching', methods=['POST'])
+def storeplayerFieldingPitching():
     # This will need to be changed to use the db correctly but is here as a placeholder
-    redisDB.set(player_name, player_fieldingPitching)
+    #redisDB.set()
     return 'Player bio stored', 200
 
 if __name__ == '__main__':
