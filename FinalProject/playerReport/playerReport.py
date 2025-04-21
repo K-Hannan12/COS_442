@@ -139,7 +139,7 @@ addNewPlayerBioHTML = """
     <h2>Player Bio</h2>
     <form method="post" action="/AddNewPlayerBatting">
         <label for="name">Name:</label><br>
-        <input type="text" name="name" id="name" size="75"required><br>
+        <input type="text" name="name" id="name"required><br>
         <label for="age">Age:</label><br>
         <input type="text" name="age" id="age"required><br>
         <label for="height">Height:</label><br>
