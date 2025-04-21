@@ -323,7 +323,7 @@ addNewPlayerFieldingPitchingHTML = """
 </html>
 """
 
-@app.route('/<player_name>')
+@app.route('/viewPlayer/<player_name>')
 def getplayer_report(player_name):
     # Get the players bio from the playerBio service
     player_name = player_name.replace(" ", "%20")
@@ -435,7 +435,7 @@ def getplayer_report(player_name):
     }
     return render_template_string(getPlayerHTML, playerBio=playerBio, battingStats=battingStats, fielding_pitchingStats=fielding_pitchingStats)
 
-@app.route('/AddNewPlayer', methods=['GET'])
+@app.route('/', methods=['GET'])
 def addNewPlayer():
     return render_template_string(addNewPlayerBioHTML)
 
