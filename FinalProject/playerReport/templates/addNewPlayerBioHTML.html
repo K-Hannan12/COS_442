@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Player Bio</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Add New Player</h1>
+    <h2>Player Bio</h2>
+    <form method="post" action="/AddNewPlayerBatting">
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name"required><br>
+        <label for="age">Age:</label><br>
+        <input type="text" name="age" id="age"required><br>
+        <label for="height">Height:</label><br>
+        <input type="text" name="height" id="height"required><br>
+        <label for="weight">Weight:</label><br>
+        <input type="text" name="weight" id="weight"required><br>
+        <label for="position">Position:</label><br>
+        <select name="position" id="position">
+            <option value="Starting Pitcher">Starting Pitcher</option>
+            <option value="Relief Pitcher">Relief Pitcher</option>
+            <option value="Catcher">Catcher</option>
+            <option value="First Base">First Base</option>
+            <option value="Second Base">Second Base</option>
+            <option value="Third Base">Third Base</option>
+            <option value="Short Stop">Short Stop</option>
+            <option value="Left Field">Left Field</option>
+            <option value="Center Field">Center Field</option>
+            <option value="Right Field">Right Field</option>
+            <option value="Designated Hitter">Designated Hitter</option>
+        </select><br>
+        <label for="team">Team:</label><br>
+        <select name="team" id="team">
+            <option value="Arizona Diamondbacks">Arizona Diamondbacks</option>
+            <option value="Atlanta Braves">Atlanta Braves</option>
+            <option value="Baltimore Orioles">Baltimore Orioles</option>
+            <option value="Boston Red Sox">Boston Red Sox</option>
+            <option value="Chicago Cubs">Chicago Cubs</option>
+            <option value="Chicago White Sox">Chicago White Sox</option>
+            <option value="Cincinnati Reds">Cincinnati Reds</option>
+            <option value="Cleveland Guardians">Cleveland Guardians</option>
+            <option value="Colorado Rockies">Colorado Rockies</option>
+            <option value="Detroit Tigers">Detroit Tigers</option>
+            <option value="Houston Astros">Houston Astros</option>
+            <option value="Kansas City Royals">Kansas City Royals</option>
+            <option value="Los Angeles Angels">Los Angeles Angels</option>
+            <option value="Los Angeles Dodgers">Los Angeles Dodgers</option>
+            <option value="Miami Marlins">Miami Marlins</option>
+            <option value="Milwaukee Brewers">Milwaukee Brewers</option>
+            <option value="Minnesota Twins">Minnesota Twins</option>
+            <option value="New York Mets">New York Mets</option>
+            <option value="New York Yankees">New York Yankees</option>
+            <option value="Oakland Athletics">Oakland Athletics</option>
+            <option value="Philadelphia Phillies">Philadelphia Phillies</option>
+            <option value="Pittsburgh Pirates">Pittsburgh Pirates</option>
+            <option value="San Diego Padres">San Diego Padres</option>
+            <option value="San Francisco Giants">San Francisco Giants</option>
+            <option value="Seattle Mariners">Seattle Mariners</option>
+            <option value="St. Louis Cardinals">St. Louis Cardinals</option>
+            <option value="Tampa Bay Rays">Tampa Bay Rays</option>
+            <option value="Texas Rangers">Texas Rangers</option>
+            <option value="Toronto Blue Jays">Toronto Blue Jays</option>
+            <option value="Washington Nationals">Washington Nationals</option>
+        </select><br>
+        <label for="number">Number:</label><br>
+        <input type="text" name="number" id="number"required><br>
+        <label for="bats">Bats:</label><br>
+        <select name="bats" id="bats">
+            <option value="Left">Left</option>
+            <option value="Right">Right</option>
+            <option value="Switch">Switch</option>
+        </select><br>
+        <label for="throws">Throws:</label><br>
+         <select name="throws" id="throws">
+            <option value="Left">Left</option>
+            <option value="Right">Right</option>
+            <option value="Switch">Switch</option>
+        </select><br>
+        <label for="headshot">Headshot URL:</label><br>
+        <input type="text" name="headshot" id="headshot"required><br>
+        <input type="submit" value="Next">
+    </form><br>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Player Batting</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Batting Stats for {{playerName}}</h1>
+    <form method="post" action="/AddNewPlayerFieldingPitching">
+    <input type="hidden" name="playerName" id="playerName" value="{{ playerName }}">
+    <table>
+        <thead>
+            <tr>
+                <th>At Bats</th>
+                <th>Runs</th>
+                <th>Hits</th>
+                <th>Home Runs</th>
+                <th>Runs Batted In</th>
+                <th>Walks</th>
+                <th>Strike Outs</th>
+                <th>Stolen Bases</th>
+                <th>Batting Average</th>
+                <th>On Base Percentage</th>
+                <th>Slugging Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" name="atBats" id="atBats" required ></td>
+                <td><input type="number" name="runs" id="runs"required ></td>
+                <td><input type="number" name="hits" id="hits"required ></td>
+                <td><input type="number" name="homeRuns" id="homeRuns"required ></td>
+                <td><input type="number" name="runsBattedIn" id="runsBattedIn"required ></td>
+                <td><input type="number" name="walks" id="walks"required ></td>
+                <td><input type="number" name="strikeOuts" id="strikeOuts"required ></td>
+                <td><input type="number" name="stolenBases" id="stolenBases"required ></td>
+                <td><input type="text" name="battingAverage" id="battingAverage"required ></td>
+                <td><input type="text" name="onBasePercentage" id="onBasePercentage"required ></td>
+                <td><input type="text" name="sluggingPercentage" id="sluggingPercentage"required ></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Next">
+    </form>
+    </body>
+</html>

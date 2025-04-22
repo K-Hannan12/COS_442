@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Report</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header img {
+            height: 60px;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+            <img src="{{ playerBio.headshot }}" alt="Headshot of {{ playerBio.name }}">
+            <h1>{{ playerBio.name }}</h1>
+    </div>
+    <h2>Player Bio</h2>
+    <p><b>Age</b>: {{ playerBio.age }}</p>
+    <p><b>Height</b>: {{ playerBio.height }}</p>
+    <p><b>Weight</b>: {{ playerBio.weight }}</p>
+    <p><b>Position</b>: {{ playerBio.position }}</p>
+    <p><b>Bats</b>: {{ playerBio.Bats }}</p>
+    <p><b>Throws</b>: {{ playerBio.Throws }}</p>
+    <p><b>Team</b>: {{ playerBio.team }}</p>
+    <p><b>Number</b>: {{ playerBio.number }}</p>
+    
+    <h3>Batting Stats</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>At Bats</th>
+                <th>Runs</th>
+                <th>Hits</th>
+                <th>Home Runs</th>
+                <th>Runs Batted In</th>
+                <th>Walks</th>
+                <th>Strike Outs</th>
+                <th>Stolen Bases</th>
+                <th>Batting Average</th>
+                <th>On Base Percentage</th>
+                <th>Slugging Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ battingStats.atBats }}</td>
+                <td>{{ battingStats.runs }}</td>
+                <td>{{ battingStats.hits }}</td>
+                <td>{{ battingStats.homeRuns }}</td>
+                <td>{{ battingStats.runsBattedIn }}</td>
+                <td>{{ battingStats.walks }}</td>
+                <td>{{ battingStats.strikeOuts }}</td>
+                <td>{{ battingStats.stolenBases }}</td>
+                <td>{{ battingStats.battingAverage }}</td>
+                <td>{{ battingStats.onBasePercentage }}</td>
+                <td>{{ battingStats.sluggingPercentage }}</td>
+            </tr>
+        </tbody>
+     </table>
+
+    <h3>Fielding and Pitching Stats </h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Games Played</th>
+                <th>Games Started</th>
+                <th>Innings At Position</th>
+                <th>Put Outs</th>
+                <th>Assists</th>
+                <th>Errors</th>
+                <th>Double Plays</th>
+                <th>Fielding Percentage</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Earned Run Average</th>
+                <th>Saves</th>
+                <th>Strike Outs</th>
+                <th>Walks Allowed</th>
+                <th>Hits Allowed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ fielding_pitchingStats.gamesPlayed }}</td>
+                <td>{{ fielding_pitchingStats.gamesStarted }}</td>
+                <td>{{ fielding_pitchingStats.inningsAtPosition }}</td>
+                <td>{{ fielding_pitchingStats.putOuts }}</td>
+                <td>{{ fielding_pitchingStats.assists }}</td>
+                <td>{{ fielding_pitchingStats.errors }}</td>
+                <td>{{ fielding_pitchingStats.doublePlays }}</td>
+                <td>{{ fielding_pitchingStats.fieldingPercentage }}</td>
+                <td>{{ fielding_pitchingStats.wins }}</td>
+                <td>{{ fielding_pitchingStats.losses }}</td>
+                <td>{{ fielding_pitchingStats.earnedRunAverage }}</td>
+                <td>{{ fielding_pitchingStats.saves }}</td>
+                <td>{{ fielding_pitchingStats.strikeOutsPitching }}</td>
+                <td>{{ fielding_pitchingStats.walksAllowed }}</td>
+                <td>{{ fielding_pitchingStats.hitsAllowed }}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
