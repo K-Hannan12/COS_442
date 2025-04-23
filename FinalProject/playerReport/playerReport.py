@@ -6,9 +6,9 @@ app = Flask(__name__)
 @app.route('/viewPlayer/<player_name>')
 def getplayer_report(player_name):
     # Get the players bio from the playerBio service
-    player_name = player_name.lower().strip()
-    player_name = player_name.replace(" ", "%20")
-    responseBio = requests.get(f"http://player-bio:5005/getplayerBio/{player_name}")
+    player_nameToPassToDB = player_name.lower().strip()
+    player_nameToPassToDB = player_name.replace(" ", "%20")
+    responseBio = requests.get(f"http://player-bio:5005/getplayerBio/{player_nameToPassToDB}")
     if responseBio.status_code != 200:
         return f'Error: {responseBio.status_code}'
     
@@ -39,21 +39,21 @@ def getplayer_report(player_name):
     }
 
     # Get the players batting stats from the batting service
-    responseBatting = requests.get(f"http://player-batting:5005/getplayerBatting/{player_name}")
+    responseBatting = requests.get(f"http://player-batting:5005/getplayerBatting/{player_nameToPassToDB}")
     if responseBatting.status_code != 200:
         return f'Error: {responseBatting.status_code}'
     
     # Format batting stats and storing them in a dictionary
     dataSplit = responseBatting.text.split('{')
     dataSplit = dataSplit[1].split(',')
-    atBats = dataSplit[0].split(':')[1]
-    runs = dataSplit[1].split(':')[1]
-    hits = dataSplit[2].split(':')[1]
-    homeRuns = dataSplit[3].split(':')[1]
-    runsBattedIn = dataSplit[4].split(':')[1]
-    walks = dataSplit[5].split(':')[1]
-    strikeOuts = dataSplit[6].split(':')[1]
-    stolenBases = dataSplit[7].split(':')[1]
+    atBats = dataSplit[0].split(':')[1].replace("'", "")
+    runs = dataSplit[1].split(':')[1].replace("'", "")
+    hits = dataSplit[2].split(':')[1].replace("'", "")
+    homeRuns = dataSplit[3].split(':')[1].replace("'", "")
+    runsBattedIn = dataSplit[4].split(':')[1].replace("'", "")
+    walks = dataSplit[5].split(':')[1].replace("'", "")
+    strikeOuts = dataSplit[6].split(':')[1].replace("'", "")
+    stolenBases = dataSplit[7].split(':')[1].replace("'", "")
     battingAverage = dataSplit[8].split(':')[1].replace("'", "")
     onBasePercentage = dataSplit[9].split(':')[1].replace("'", "")
     sluggingPercentage = dataSplit[10].split(':')[1].replace("'", "").replace("}", "")
@@ -73,27 +73,27 @@ def getplayer_report(player_name):
     }
 
     # Get the players fielding and pitching stats from the fielding-pitching service
-    responseFielding_pitching = requests.get(f"http://player-fielding-pitching:5005/getplayerFieldingPitching/{player_name}")
+    responseFielding_pitching = requests.get(f"http://player-fielding-pitching:5005/getplayerFieldingPitching/{player_nameToPassToDB}")
     if responseFielding_pitching.status_code != 200:
         return f'Error: {responseFielding_pitching.status_code}'
     
     # Format fielding and pitching stats and storing them in a dictionary
     dataSplit = responseFielding_pitching.text.split('{')
     dataFeilding_pitchingSplit = dataSplit[1].split(',')  
-    gamesPlayed = dataFeilding_pitchingSplit[0].split(':')[1]
-    gamesStarted = dataFeilding_pitchingSplit[1].split(':')[1]
-    inningsAtPosition = dataFeilding_pitchingSplit[2].split(':')[1]
-    putOuts = dataFeilding_pitchingSplit[3].split(':')[1]
-    assists = dataFeilding_pitchingSplit[4].split(':')[1]
-    errors = dataFeilding_pitchingSplit[5].split(':')[1]
-    doublePlays = dataFeilding_pitchingSplit[6].split(':')[1]
+    gamesPlayed = dataFeilding_pitchingSplit[0].split(':')[1].replace("'", "")
+    gamesStarted = dataFeilding_pitchingSplit[1].split(':')[1].replace("'", "")
+    inningsAtPosition = dataFeilding_pitchingSplit[2].split(':')[1].replace("'", "")
+    putOuts = dataFeilding_pitchingSplit[3].split(':')[1].replace("'", "")
+    assists = dataFeilding_pitchingSplit[4].split(':')[1].replace("'", "")
+    errors = dataFeilding_pitchingSplit[5].split(':')[1].replace("'", "")
+    doublePlays = dataFeilding_pitchingSplit[6].split(':')[1].replace("'", "")
     fieldingPercentage = dataFeilding_pitchingSplit[7].split(':')[1].replace("'", "")
-    wins = dataFeilding_pitchingSplit[8].split(':')[1]
-    losses = dataFeilding_pitchingSplit[9].split(':')[1]
+    wins = dataFeilding_pitchingSplit[8].split(':')[1].replace("'", "")
+    losses = dataFeilding_pitchingSplit[9].split(':')[1].replace("'", "")
     earnedRunAverage = dataFeilding_pitchingSplit[10].split(':')[1].replace("'", "")
-    saves = dataFeilding_pitchingSplit[11].split(':')[1]
+    saves = dataFeilding_pitchingSplit[11].split(':')[1].replace("'", "")
     strikeOutsPitching = dataFeilding_pitchingSplit[12].split(':')[1]
-    walksAllowed = dataFeilding_pitchingSplit[13].split(':')[1]
+    walksAllowed = dataFeilding_pitchingSplit[13].split(':')[1].replace("'", "")
     hitsAllowed = dataFeilding_pitchingSplit[14].split(':')[1].replace("'", "").replace("}", "")
 
     fielding_pitchingStats = {
@@ -136,5 +136,6 @@ def addNewPlayerComplete():
     playerName = request.form['playerName']
     requests.post("http://player-fielding-pitching:5005/storeplayerFieldingPitching", data=request.form.to_dict())
     return render_template('addNewPlayerCompleteHTML.html', playerName=playerName)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)

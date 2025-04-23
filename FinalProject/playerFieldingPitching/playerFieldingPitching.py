@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import redis
 
 app = Flask(__name__)
@@ -6,33 +6,35 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 
 @app.route('/getplayerFieldingPitching/<player_name>')
 def getplayerFieldingPitching(player_name):
-    # This will need to be changed to use the db correctly but is here as a placeholder
-    playerFieldingPitching = {
-    'gamesPlayed': 120,
-    'gamesStarted': 110,
-    'inningsAtPosition': 900.1,
-    'putOuts': 245,
-    'assists': 78,
-    'errors': 5,
-    'doublePlays': 32,
-    'fieldingPercentage': '.985',
-    'wins': 0,
-    'losses': 0,
-    'earnedRunAverage': '0.0',
-    'saves': 0,
-    'strikeOutsPitching': 0,
-    'walksAllowed': 0,
-    'hitsAllowed': 0
-}
-    #playerBio = redisDB.hget(player_name)
-    #if playerBio is None:
-    #    return 'Player not found', 404
+    player_name = player_name.lower().replace(" ", "_")
+    
+    playerFieldingPitching = redisDB.hgetall(f'{player_name}:feildingPitching')
+    if not playerFieldingPitching:
+        return 'Player not found', 404
     return str(playerFieldingPitching), 200
 
 @app.route('/storeplayerFieldingPitching', methods=['POST'])
 def storeplayerFieldingPitching():
-    # This will need to be changed to use the db correctly but is here as a placeholder
-    #redisDB.set()
+    player_name = request.form['playerName'].lower().replace(" ", "_")
+    playerFieldingPitching = {
+        'gamesPlayed': request.form['gamesPlayed'],
+        'gamesStarted': request.form['gamesStarted'],
+        'inningsAtPosition': request.form['inningsAtPosition'],
+        'putOuts': request.form['putOuts'],
+        'assists': request.form['assists'],
+        'errors': request.form['errors'],
+        'doublePlays': request.form['doublePlays'],
+        'fieldingPercentage': request.form['fieldingPercentage'],
+        'wins': request.form['wins'],
+        'losses': request.form['losses'],
+        'earnedRunAverage': request.form['earnedRunAverage'],
+        'saves': request.form['saves'],
+        'strikeOutsPitching': request.form['strikeOutsPitching'],
+        'walksAllowed': request.form['walksAllowed'],
+        'hitsAllowed': request.form['hitsAllowed']
+    }
+    
+    redisDB.hset(f'{player_name}:feildingPitching', mapping=playerFieldingPitching)
     return 'Player bio stored', 200
 
 if __name__ == '__main__':
