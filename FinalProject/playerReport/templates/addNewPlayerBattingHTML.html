@@ -9,38 +9,40 @@
     <h1>Batting Stats for {{playerName}}</h1>
     <form method="post" action="/AddNewPlayerFieldingPitching">
     <input type="hidden" name="playerName" id="playerName" value="{{ playerName }}">
-    <table>
-        <thead>
-            <tr>
-                <th>At Bats</th>
-                <th>Runs</th>
-                <th>Hits</th>
-                <th>Home Runs</th>
-                <th>Runs Batted In</th>
-                <th>Walks</th>
-                <th>Strike Outs</th>
-                <th>Stolen Bases</th>
-                <th>Batting Average</th>
-                <th>On Base Percentage</th>
-                <th>Slugging Percentage</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="number" name="atBats" id="atBats" required ></td>
-                <td><input type="number" name="runs" id="runs"required ></td>
-                <td><input type="number" name="hits" id="hits"required ></td>
-                <td><input type="number" name="homeRuns" id="homeRuns"required ></td>
-                <td><input type="number" name="runsBattedIn" id="runsBattedIn"required ></td>
-                <td><input type="number" name="walks" id="walks"required ></td>
-                <td><input type="number" name="strikeOuts" id="strikeOuts"required ></td>
-                <td><input type="number" name="stolenBases" id="stolenBases"required ></td>
-                <td><input type="text" name="battingAverage" id="battingAverage"required ></td>
-                <td><input type="text" name="onBasePercentage" id="onBasePercentage"required ></td>
-                <td><input type="text" name="sluggingPercentage" id="sluggingPercentage"required ></td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <label for="atBats"><b>At Bats</b>:</label><br>
+    <input type="text" name="atBats" id="atBats"required><br>
+
+    <label for="runs"><b>Runs</b>:</label><br>
+    <input type="text" name="runs" id="runs"required><br>
+
+    <label for="hits"><b>Hits</b>:</label><br>
+    <input type="text" name="hits" id="hits"required><br>
+
+    <label for="homeRuns"><b>Home Runs</b>:</label><br>
+    <input type="text" name="homeRuns" id="homeRuns"required><br>
+
+    <label for="runsBattedIn"><b>Runs Batted In</b>:</label><br>
+    <input type="text" name="runsBattedIn" id="runsBattedIn"required><br>
+
+    <label for="walks"><b>Walks</b>:</label><br>
+    <input type="text" name="walks" id="walks"required><br>
+
+    <label for="strikeOuts"><b>Strike Outs</b>:</label><br>
+    <input type="text" name="strikeOuts" id="strikeOuts"required><br>
+
+    <label for="stolenBases"><b>Stolen Bases</b>:</label><br>
+    <input type="text" name="stolenBases" id="stolenBases"required><br>
+
+    <label for="battingAverage"><b>Batting Average</b>:</label><br>
+    <input type="text" name="battingAverage" id="battingAverage"required><br>
+
+    <label for="onBasePercentage"><b>On Base Percentage</b>:</label><br>
+    <input type="text" name="onBasePercentage" id="onBasePercentage"required><br>
+
+    <label for="sluggingPercentage"><b>Slugging Percentage</b>:</label><br>
+    <input type="text" name="sluggingPercentage" id="sluggingPercentage"required><br>
+
     <input type="submit" value="Next">
     </form>
     </body>

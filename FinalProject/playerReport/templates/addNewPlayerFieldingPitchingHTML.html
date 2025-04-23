@@ -9,46 +9,52 @@
     <h1>Fielding and Pitching Stats for {{playerName}}</h1>
     <form method="post" action="http://player-fielding:5005/storeplayerFieldingPitching">
     <input type="hidden" name="playerName" id="playerName" value="{{ playerName }}">
-    <table>
-        <thead>
-            <tr>
-                <th>Games Played</th>
-                <th>Games Started</th>
-                <th>Innings At Position</th>
-                <th>Put Outs</th>
-                <th>Assists</th>
-                <th>Errors</th>
-                <th>Double Plays</th>
-                <th>Fielding Percentage</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Earned Run Average</th>
-                <th>Saves</th>
-                <th>Strike Outs</th>
-                <th>Walks Allowed</th>
-                <th>Hits Allowed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="number" name="gamesPlayed" id="gamesPlayed"required ></td>
-                <td><input type="number" name="gamesStarted" id="gamesStarted"required ></td>
-                <td><input type="number" name="inningsAtPosition" id="inningsAtPosition"required ></td>
-                <td><input type="number" name="putOuts" id="putOuts"required ></td>
-                <td><input type="number" name="assists" id="assists"required ></td>
-                <td><input type="number" name="errors" id="errors"required ></td>
-                <td><input type="number" name="doublePlays" id="doublePlays"required ></td>
-                <td><input type="text" name="fieldingPercentage" id="fieldingPercentage"required ></td>
-                <td><input type="number" name="wins" id="wins"required ></td>
-                <td><input type="number" name="losses" id="losses"required ></td>
-                <td><input type="text" name="earnedRunAverage" id="earnedRunAverage"required ></td>
-                <td><input type="number" name="saves" id="saves"required ></td>
-                <td><input type="number" name="strikeOutsPitching" id="strikeOutsPitching"required ></td>
-                <td><input type="number" name="walksAllowed" id="walksAllowed"required ></td>
-                <td><input type="number" name="hitsAllowed" id="hitsAllowed"required ></td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <label for="gamesPlayed"><b>Games Played</b>:</label><br>
+    <input type="text" name="gamesPlayed" id="gamesPlayed"required><br>
+    
+    <label for="gamesStarted"><b>Games Started</b>:</label><br>
+    <input type="text" name="gamesStarted" id="gamesStarted"required><br>
+    
+    <label for="inningsAtPosition"><b>Innings At Position</b>:</label><br>
+    <input type="text" name="inningsAtPosition" id="inningsAtPosition"required><br>
+    
+    <label for="putOuts"><b>Put Outs</b>:</label><br>
+    <input type="text" name="putOuts" id="putOuts"required><br>
+    
+    <label for="assists"><b>Assists</b>:</label><br>
+    <input type="text" name="assists" id="assists"required><br>
+    
+    <label for="errors"><b>Errors</b>:</label><br>
+    <input type="text" name="errors" id="errors"required><br>
+    
+    <label for="doublePlays"><b>Double Plays</b>:</label><br>
+    <input type="text" name="doublePlays" id="doublePlays"required><br>
+    
+    <label for="fieldingPercentage"><b>Fielding Percentage</b>:</label><br>
+    <input type="text" name="fieldingPercentage" id="fieldingPercentage"required><br>
+    
+    <label for="wins"><b>Wins</b>:</label><br>
+    <input type="text" name="wins" id="wins"required><br>
+    
+    <label for="losses"><b>Losses</b>:</label><br>
+    <input type="text" name="losses" id="losses"required><br>
+    
+    <label for="earnedRunAverage"><b>Earned Run Average</b>:</label><br>
+    <input type="text" name="earnedRunAverage" id="earnedRunAverage"required><br>
+    
+    <label for="saves"><b>Saves</b>:</label><br>
+    <input type="text" name="saves" id="saves"required><br>
+    
+    <label for="strikeOutsPitching"><b>Strike Outs</b>:</label><br>
+    <input type="text" name="strikeOutsPitching" id="strikeOutsPitching"required><br>
+    
+    <label for="walksAllowed"><b>Walks Allowed</b>:</label><br>
+    <input type="text" name="walksAllowed" id="walksAllowed"required><br>
+    
+    <label for="hitsAllowed"><b>Hits Allowed</b>:</label><br>
+    <input type="text" name="hitsAllowed" id="hitsAllowed"required><br>
+    
     <input type="submit" value="Submit">
     </form>
     </body>
