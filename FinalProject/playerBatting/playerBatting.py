@@ -41,7 +41,7 @@ def storeplayerBatting():
     'onBasePercentage': request.form['onBasePercentage'],
     'sluggingPercentage': request.form['sluggingPercentage']
     }
-    redisDB.set(f'{player_name}:batting', playerBatting)
+    #redisDB.set(f'{player_name}:batting', playerBatting)
     return 'Player bio stored', 200
 
 if __name__ == '__main__':
