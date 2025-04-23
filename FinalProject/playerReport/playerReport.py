@@ -15,19 +15,18 @@ def getplayer_report(player_name):
     # This gets the player bio from the playerBio service and splits it into a dictionary
     dataSplit = responseBio.text.split('{')
     dataSplit = dataSplit[1].split(',')
-    name = dataSplit[0].split(':', 1)[1].replace("'", "")
-    age = dataSplit[1].split(':', 1)[1].replace("'", "")
-    height = dataSplit[2].split(':', 1)[1].replace("'", "")
-    weight = dataSplit[3].split(':', 1)[1].replace("'", "")
-    position = dataSplit[4].split(':', 1)[1].replace("'", "")
-    team = dataSplit[5].split(':', 1)[1].replace("'", "")
-    number = dataSplit[6].split(':', 1)[1].replace("'", "")
-    bats = dataSplit[7].split(':', 1)[1].replace("'", "")
-    throws = dataSplit[8].split(':', 1)[1].replace("'", "")
-    headshot = dataSplit[9].split(':', 1)[1].replace("'", "").replace("}", "")
+    age = dataSplit[0].split(':', 1)[1].replace("'", "")
+    height = dataSplit[1].split(':', 1)[1].replace("'", "")
+    weight = dataSplit[2].split(':', 1)[1].replace("'", "")
+    position = dataSplit[3].split(':', 1)[1].replace("'", "")
+    team = dataSplit[4].split(':', 1)[1].replace("'", "")
+    number = dataSplit[5].split(':', 1)[1].replace("'", "")
+    bats = dataSplit[6].split(':', 1)[1].replace("'", "")
+    throws = dataSplit[7].split(':', 1)[1].replace("'", "")
+    headshot = dataSplit[8].split(':', 1)[1].replace("'", "").replace("}", "")
     
     playerBio = {
-        'name': name,
+        'name': player_name,
         'age': age,
         'height': height,
         'weight': weight,
