@@ -6,8 +6,9 @@ app = Flask(__name__)
 @app.route('/viewPlayer/<player_name>')
 def getplayer_report(player_name):
     # Get the players bio from the playerBio service
+    player_name = player_name.lower().strip()
     player_name = player_name.replace(" ", "%20")
-    responseBio = requests.get("http://player-bio:5005/getplayerBio/{player_name}")
+    responseBio = requests.get(f"http://player-bio:5005/getplayerBio/{player_name}")
     if responseBio.status_code != 200:
         return f'Error: {responseBio.status_code}'
     
@@ -39,7 +40,7 @@ def getplayer_report(player_name):
     }
 
     # Get the players batting stats from the batting service
-    responseBatting = requests.get("http://player-batting:5005/getplayerBatting/{player_name}")
+    responseBatting = requests.get(f"http://player-batting:5005/getplayerBatting/{player_name}")
     if responseBatting.status_code != 200:
         return f'Error: {responseBatting.status_code}'
     
@@ -73,7 +74,7 @@ def getplayer_report(player_name):
     }
 
     # Get the players fielding and pitching stats from the fielding-pitching service
-    responseFielding_pitching = requests.get("http://player-fielding-pitching:5005/getplayerFieldingPitching/{player_name}")
+    responseFielding_pitching = requests.get(f"http://player-fielding-pitching:5005/getplayerFieldingPitching/{player_name}")
     if responseFielding_pitching.status_code != 200:
         return f'Error: {responseFielding_pitching.status_code}'
     
