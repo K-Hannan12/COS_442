@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Player Complete</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Player Successfully Added!</h1></br>
+    <h2>Click Here to view {{playerName}} players report</h2>
+    <form method="get" action="/viewPlayer/{{playerName}}">
+        <input type="submit" value="View Player Report">
+    </form>
+    <h2>Click Here to add another player</h2>
+    <form method="get" action="/">
+        <input type="submit" value="Add New Player">
+    </form>
+</body>
+</html>

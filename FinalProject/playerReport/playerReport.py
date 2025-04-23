@@ -131,5 +131,10 @@ def addNewPlayerFieldingPitching():
     requests.post("http://player-batting:5005/storeplayerBatting", data=request.form.to_dict())
     return render_template('addNewPlayerFieldingPitchingHTML.html', playerName=playerName)
 
+@app.route('/AddNewPlayerComplete', methods=['POST'])
+def addNewPlayerComplete():
+    playerName = request.form['playerName']
+    requests.post("http://player-fielding-pitching:5005/storeplayerFieldingPitching", data=request.form.to_dict())
+    return render_template('addNewPlayerCompleteHTML.html', playerName=playerName)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)
