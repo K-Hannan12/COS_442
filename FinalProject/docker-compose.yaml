@@ -24,6 +24,18 @@ services:
       dockerfile: Dockerfile
     expose:
       - "5005"
+  team-report:
+    build:
+      context: ./teamReport
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
+  team-info:
+    build:
+      context: ./teamInfo
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
   nginx:
     image: nginx:latest
     ports:
