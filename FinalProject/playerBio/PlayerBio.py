@@ -8,7 +8,7 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 def getplayerBio(player_name):
     player_name = player_name.lower().replace(" ", "_")
 
-    #get the players information from the redis database
+    #get the players bio information from the redis database
     playerBio = redisDB.hgetall(f'{player_name}:bio') 
     if not playerBio:
         return 'Player not found', 404
