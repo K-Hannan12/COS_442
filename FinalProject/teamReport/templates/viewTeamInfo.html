@@ -13,6 +13,11 @@
             width: auto;
             border-radius: 8px;
         }
+        .team-name {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -31,7 +36,7 @@
 <body>
     <div class="header">
         <img src="/static/defaultHeadshot.png" alt="Headshot of {{ teamInfo.name}}">
-        <h1> {{ teamInfo.name }}</h1>
+        <h1 class="team-name"> {{ teamInfo.name }}</h1>
  </div>
     <h2>Team Information</h2>
     <p><b>Year Founded</b>: {{ teamInfo.founding_year }}</p>

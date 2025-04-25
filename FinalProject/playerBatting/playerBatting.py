@@ -11,7 +11,10 @@ def getplayerBatting(player_name):
     playerBatting = redisDB.hgetall(f'{player_name}:batting')
     if not playerBatting:
         return 'Player not found', 404
-    return str(playerBatting), 200
+    playerBattingStr = str(playerBatting).strip('{').strip('}')
+    playerBattingStr = f'{player_name}\'s Batting Stats = {playerBattingStr}'
+    
+    return playerBattingStr, 200
 
 @app.route('/storeplayerBatting', methods=['POST'])
 def storeplayerBatting():

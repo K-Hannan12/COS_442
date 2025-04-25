@@ -6,16 +6,16 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 
 @app.route('/getplayerBio/<player_name>')
 def getplayerBio(player_name):
-    player_name = player_name.lower().replace(" ", "_")
+    player_name_to_DB = player_name.lower().replace(" ", "_")
 
     #get the players bio information from the redis database
-    playerBio = redisDB.hgetall(f'{player_name}:bio') 
+    playerBio = redisDB.hgetall(f'{player_name_to_DB}:bio') 
     if not playerBio:
         return 'Player not found', 404
+    playerBioStr = str(playerBio).strip('{').strip('}')
+    playerBioStr = f'{player_name}\'s Bio = {playerBioStr}'
     
-    print(playerBio)
-    
-    return str(playerBio), 200
+    return playerBioStr, 200
 
 @app.route('/storeplayerBio', methods=['POST'])
 def storeplayerBio():

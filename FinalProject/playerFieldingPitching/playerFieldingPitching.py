@@ -11,7 +11,9 @@ def getplayerFieldingPitching(player_name):
     playerFieldingPitching = redisDB.hgetall(f'{player_name}:feildingPitching')
     if not playerFieldingPitching:
         return 'Player not found', 404
-    return str(playerFieldingPitching), 200
+    playerFieldingPitchingStr = str(playerFieldingPitching).strip('{').strip('}')
+    playerFieldingPitchingStr = f'{player_name}\'s Fielding and Pitching Stats = {playerFieldingPitchingStr}'
+    return playerFieldingPitchingStr, 200
 
 @app.route('/storeplayerFieldingPitching', methods=['POST'])
 def storeplayerFieldingPitching():
