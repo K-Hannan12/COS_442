@@ -32,9 +32,7 @@ def addTeamInfo():
         'all_time_losses': request.form['all_time_losses'],
         'division_titles': request.form['division_titles'],
         'world_series_titles': request.form['world_series_titles'],
-        'last_world_series_won': request.form['last_world_series_won'],
-        'primary_color': request.form['primary_color'],
-        'secondary_color': request.form['secondary_color'],
+        'last_world_series_won': request.form['last_world_series_won']
     }
     #This will store the team info in the redis database.
     redisDB.hset(f'{team_name}:info', mapping=teamInfo)

@@ -21,7 +21,7 @@ def getTeamReport(team_name):
         "abbreviation": dataSplit[0].split(':', 1)[1].replace("'", ""),
         "nickname": dataSplit[1].split(':', 1)[1].replace("'", ""),
         "location": dataSplit[2].split(':', 1)[1].replace("'", ""),
-        "division": dataSplit[3].split(':', 1)[1].replace("'", ""),
+       "division": dataSplit[3].split(':', 1)[1].replace("'", ""),
         "league": dataSplit[4].split(':', 1)[1].replace("'", ""),
         "founding_year": dataSplit[5].split(':', 1)[1].replace("'", ""),
         "stadium": dataSplit[6].split(':', 1)[1].replace("'", ""),
@@ -31,10 +31,8 @@ def getTeamReport(team_name):
         "world_series_titles": dataSplit[10].split(':', 1)[1].replace("'", ""), 
         "last_world_series_won": dataSplit[11].split(':', 1)[1].replace("'", "")
     }
-    primary_color = dataSplit[12].split(':', 1)[1].replace("'", "")
-    secondary_color = dataSplit[13].split(':', 1)[1].replace("'", "").replace("}", "")
     
-    return render_template('viewTeamInfo.html')
+    return render_template('viewTeamInfo.html',teamInfo=teamInfo)
 
 # This route will render the addTeamInfo template when the /addTeamInfo URL is accessed that will return a form to add team information
 # and send that infomtaion to the teamInfo contanin to store the data.

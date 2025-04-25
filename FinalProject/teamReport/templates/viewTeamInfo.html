@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Report</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header img {
+            height: 160px;
+            width: auto;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/static/defaultHeadshot.png" alt="Headshot of {{ teamInfo.name}}">
+        <h1> {{ teamInfo.name }}</h1>
+ </div>
+    <h2>Team Information</h2>
+    <p><b>Year Founded</b>: {{ teamInfo.founding_year }}</p>
+    <p><b>Location</b>: {{ teamInfo.location }}</p>
+    <p><b>Abbreviation</b>: {{ teamInfo.abbreviation }}</p>
+    <p><b>Nickname</b>: {{ teamInfo.nickname }}</p>
+    <p><b>League</b>: {{ teamInfo.league }}</p>
+    <p><b>Division</b>: {{ teamInfo.division }}</p>
+    <p><b>Stadium</b>: {{ teamInfo.stadium }}</p>
+    <p><b>All Times Wins</b>: {{ teamInfo.all_time_wins }}</p>
+    <p><b>All Time Losses</b>: {{ teamInfo.all_time_losses }}</p>
+    <p><b>Division Titles</b>: {{ teamInfo.division_titles }}</p>
+    <p><b>World Serise Titles</b>: {{ world_series_titles }}</p>
+    </br>
+    <h2>Team Roster</h2>
+</body>
+</html>
