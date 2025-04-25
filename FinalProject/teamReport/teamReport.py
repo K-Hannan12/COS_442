@@ -16,7 +16,9 @@ def getTeamReport(team_name):
         return f'Error: {teamInfoResponse} is not found'
     
     # This will convert the response string into a dictionary.
-    teamInfo = ast.literal_eval(teamInfoResponse.text)
+    teamInfoStr = teamInfoResponse.text.split('=')
+    teamInfoStr = "{" + teamInfoStr[1] + "}"
+    teamInfo = ast.literal_eval(teamInfoStr)
     return render_template('viewTeamInfo.html',teamInfo=teamInfo)
 
 # This route will render the addTeamInfo template when the /addTeamInfo URL is accessed that will return a form to add team information

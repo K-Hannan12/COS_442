@@ -7,14 +7,15 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 # This route will get a teams information from the redis database.
 @app.route('/getTeamInfo/<team_name>')
 def getplayerBatting(team_name):
-    team_name = team_name.lower().replace(" ", "_")
+    team_name_toDB = team_name.lower().replace(" ", "_")
     
     #Get the teams info from the redis database
-    teamInfo = redisDB.hgetall(f'{team_name}:info')
+    teamInfo = redisDB.hgetall(f'{team_name_toDB}:info')
     if not teamInfo:
         return 'Team not found', 404
-    
-    return str(teamInfo), 200
+    teamInfoStr = str(teamInfo).strip('{').strip('}')
+    teamInfoStr = f'{team_name} = {teamInfoStr}'
+    return teamInfoStr, 200
 
 #This route will store a teams information in the redis database.
 @app.route('/storeTeamInfo',methods=['POST'])
