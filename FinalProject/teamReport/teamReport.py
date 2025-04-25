@@ -13,7 +13,7 @@ def getTeamReport(team_name):
     team_nameToPassToDB = team_name.replace(" ", "%20")
     teamInfoResponse = requests.get(f"http://team-info:5005/getTeamInfo/{team_nameToPassToDB}")
     if teamInfoResponse.status_code != 200:
-        return f'Error: {teamInfoResponse} is not found'
+        return f'Error: {teamInfoResponse} {team_name} not found'
     
     # This will convert the response string into a dictionary.
     teamInfoStr = teamInfoResponse.text.split('=')
