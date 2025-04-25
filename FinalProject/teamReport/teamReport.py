@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
+import ast
 
 app = Flask(__name__)
 
@@ -13,25 +14,9 @@ def getTeamReport(team_name):
     teamInfoResponse = requests.get(f"http://team-info:5005/getTeamInfo/{team_nameToPassToDB}")
     if teamInfoResponse.status_code != 200:
         return f'Error: {teamInfoResponse} is not found'
-    dataSplit = teamInfoResponse.text.split('{')
-    dataSplit = dataSplit[1].split(',')
-
-    teamInfo = {
-        "name": team_name,
-        "abbreviation": dataSplit[0].split(':', 1)[1].replace("'", ""),
-        "nickname": dataSplit[1].split(':', 1)[1].replace("'", ""),
-        "location": dataSplit[2].split(':', 1)[1].replace("'", ""),
-       "division": dataSplit[3].split(':', 1)[1].replace("'", ""),
-        "league": dataSplit[4].split(':', 1)[1].replace("'", ""),
-        "founding_year": dataSplit[5].split(':', 1)[1].replace("'", ""),
-        "stadium": dataSplit[6].split(':', 1)[1].replace("'", ""),
-        "all_time_wins": dataSplit[7].split(':', 1)[1].replace("'", ""),
-        "all_time_losses": dataSplit[8].split(':', 1)[1].replace("'", ""),
-        "division_titles": dataSplit[9].split(':', 1)[1].replace("'", ""),
-        "world_series_titles": dataSplit[10].split(':', 1)[1].replace("'", ""), 
-        "last_world_series_won": dataSplit[11].split(':', 1)[1].replace("'", "")
-    }
     
+    # This will convert the response string into a dictionary.
+    teamInfo = ast.literal_eval(teamInfoResponse.text)
     return render_template('viewTeamInfo.html',teamInfo=teamInfo)
 
 # This route will render the addTeamInfo template when the /addTeamInfo URL is accessed that will return a form to add team information
@@ -39,6 +24,12 @@ def getTeamReport(team_name):
 @app.route('/addTeamInfo')
 def addNewTeam():
     return  render_template('addNewTeam.html')
+
+@app.route('/addNewTeamComplete', methods=['POST'])
+def addNewTeamComplete():
+    teamName = request.form['teamName']
+    requests.post(f"http://team-info:5005/storeTeamInfo",data=request.form.to_dict())
+    return render_template('addNewTeamComplete.html', teamName=teamName)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)

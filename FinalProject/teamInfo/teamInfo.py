@@ -14,12 +14,12 @@ def getplayerBatting(team_name):
     if not teamInfo:
         return 'Team not found', 404
     
-    return teamInfo
+    return str(teamInfo), 200
 
 #This route will store a teams information in the redis database.
 @app.route('/storeTeamInfo',methods=['POST'])
 def addTeamInfo():
-    team_name = request.form['name'].lower().replace(" ", "_")
+    team_name = request.form['teamName'].lower().replace(" ", "_")
     teamInfo = {
         'abbreviation': request.form['abbreviation'],
         'nickname': request.form['nickname'],

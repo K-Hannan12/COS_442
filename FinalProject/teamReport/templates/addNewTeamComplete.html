@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Team Complete</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Team Successfully Added!</h1>
+    <h2>Click Here to view the {{teamName}}'s Team report</h2>
+    <form method="get" action="/viewTeam/{{teamName}}">
+        <input type="submit" value="View Team Report">
+    </form>
+    <h2>Click Here to add another Team</h2>
+    <form method="get" action="/addTeamInfo">
+        <input type="submit" value="Add New Team">
+    </form>
+</body>
+</html>
