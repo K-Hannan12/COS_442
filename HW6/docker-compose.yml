@@ -22,4 +22,6 @@ services:
 
   worker:
     build: ./worker
+    ports:
+      - "5000:80"
 

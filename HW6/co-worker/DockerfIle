@@ -1,0 +1,4 @@
+FROM python:alpine
+RUN pip install requests
+COPY co-worker.py /
+CMD ["python", "co-worker.py"]
