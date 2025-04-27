@@ -24,5 +24,5 @@ def co_work_loop():
         except requests.exceptions.RequestException as e:
             print(f"Error connecting to worker: {e}")
 
-if __name__ == "__main__":
-    co_work_loop()
+
+co_work_loop()
