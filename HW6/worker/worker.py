@@ -41,8 +41,9 @@ def work_loop(interval=1):
     global flag
         
     while True:
+        # If flag is true then it will sleep
         if flag:
-            random_sleep = random.randint(1,2)
+            random_sleep = random.randint(1,5)
             log.info(f'Sleeping for {random_sleep} seconds')
             time.sleep(random_sleep)
             flag = False
