@@ -38,7 +38,14 @@ def hash_bytes(data):
 def work_loop(interval=1):
     deadline = 0
     loops_done = 0
+    global flag
+        
     while True:
+        if flag:
+            random_sleep = random.randint(1,2)
+            log.info(f'Sleeping for {random_sleep} seconds')
+            time.sleep(random_sleep)
+            flag = False
         if time.time() > deadline:
             log.info("{} more units of work done, updating hash counter"
                      .format(loops_done))
@@ -67,13 +74,7 @@ flag = False
 
 # This is the worker thread
 def work():
-    global flag
     while True:
-        if flag:
-            random_sleep = random.randint(2,5)
-            time.sleep(random_sleep)
-            flag = False
-        else:
             try:
                 work_loop()
             except:
@@ -92,6 +93,6 @@ def getFlagFromWorker():
 
 if __name__ == "__main__":
     threading.Thread(target=work).start()
-    app.run(host='0.0.0.0',port=80, threaded=True)
+    app.run(host='0.0.0.0',port=5000, threaded=True)
 
 
