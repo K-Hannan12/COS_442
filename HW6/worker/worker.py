@@ -3,6 +3,11 @@ import os
 from redis import Redis
 import requests
 import time
+from flask import Flask
+import threading
+import random
+
+app = Flask(__name__)
 
 DEBUG = os.environ.get("DEBUG", "").lower().startswith("y")
 
@@ -57,14 +62,36 @@ def work_once():
     if not created:
         log.info("We already had that coin")
 
+#Global flag
+flag = False
+
+# This is the worker thread
+def work():
+    global flag
+    while True:
+        if flag:
+            random_sleep = random.randint(2,5)
+            time.sleep(random_sleep)
+            flag = False
+        else:
+            try:
+                work_loop()
+            except:
+                log.exception("In work loop:")
+                log.error("Waiting 10s and restarting.")
+                time.sleep(10)
+
+
+# This is the route that co-worker will call
+@app.route('/')
+def getFlagFromWorker():
+    global flag
+    flag = True
+    return "OK"
+
 
 if __name__ == "__main__":
-    while True:
-        try:
-            work_loop()
-        except:
-            log.exception("In work loop:")
-            log.error("Waiting 10s and restarting.")
-            time.sleep(10)
+    threading.Thread(target=work).start()
+    app.run(host='0.0.0.0',port=80, threaded=True)
 
 
