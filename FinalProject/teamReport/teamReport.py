@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import requests
 import ast
+import redis
+import io
 
 app = Flask(__name__)
+r = redis.Redis(host='redis', port=6379, db=0)
 
 # This route will render the viewTeamInfo template when the root URL is accessed that will return team information.
 # It will use a get request to get the teams information from the teamInfo container.
@@ -30,8 +33,39 @@ def addNewTeam():
 @app.route('/addNewTeamComplete', methods=['POST'])
 def addNewTeamComplete():
     teamName = request.form['teamName']
+    storeTeamLogo(teamName)
     requests.post(f"http://team-info:5005/storeTeamInfo",data=request.form.to_dict())
     return render_template('addNewTeamComplete.html', teamName=teamName)
+
+@app.route('/getTeamLogo/<team_name>')
+def getTeamLogo(team_name):
+    team_name = team_name.lower().strip()
+    team_name = team_name.replace(" ", "_")
+
+    image_data = r.hget(f'teamLogo:{team_name.lower()}', 'data')
+    mimetype = r.hget(f'teamLogo:{team_name.lower()}', 'mimetype')
+   
+    if not image_data or not mimetype:
+        return send_file('static/defaultHeadshot.png', mimetype='image/png')
+    
+    # Send image file to HTML template
+    return send_file(
+        # Create a in memory file object to send the image bytes.
+        io.BytesIO(image_data),
+        mimetype=mimetype.decode('utf-8')
+    )
+
+def storeTeamLogo(team_name):
+   
+    team_name = team_name.lower().strip()
+    team_name = team_name.replace(" ", "_")
+    image_data = request.files['team_logo'].read()
+    mimetype = request.files['team_logo'].mimetype
+
+    r.hset(f'teamLogo:{team_name}', mapping={
+        'data': image_data,
+        'mimetype': mimetype
+    })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)
