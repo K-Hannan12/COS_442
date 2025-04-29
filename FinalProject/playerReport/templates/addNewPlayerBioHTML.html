@@ -6,7 +6,7 @@
 <body>
     <h1>Add New Player</h1>
     <h2>Player Bio</h2>
-    <form method="post" action="/AddNewPlayerBatting">
+    <form method="post" action="/AddNewPlayerBatting" enctype="multipart/form-data">
         <label for="name"><b>Name</b>:</label><br>
         <input type="text" name="name" id="name"required><br>
 
@@ -54,7 +54,7 @@
             <option value="Switch">Switch</option>
         </select><br>
 
-        <label for="headshot"><b>Headshot URL</b>:</label><br>
+        <label for="headshot"><b>Upload Headshot</b>:</label><br>
         <input type="file" name="headshot" id="headshot"><br>
 
         <input type="submit" value="Next">

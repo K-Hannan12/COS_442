@@ -28,8 +28,7 @@ def storeplayerBio():
     'team': request.form['team'],
     'number': request.form['number'],
     'bats': request.form['bats'],
-    'throws': request.form['throws'],
-    'headshot': request.form['headshot']
+    'throws': request.form['throws']
     }
     #store the players bio information in the redis database
     redisDB.hset(f'{player_name}:bio', mapping=player_bio)

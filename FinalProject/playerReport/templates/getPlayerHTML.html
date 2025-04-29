@@ -29,16 +29,16 @@
 </head>
 <body>
     <div class="header">
-           <img src="/static/defaultHeadshot.png" alt="Headshot of {{ playerBio.name }}">
-            <h1>{{ playerBio.name }}</h1>
+           <img src="/getHeadshot/{{ player_name }}" alt="Headshot of {{ player_name }}"/>
+            <h1>{{ player_name }}</h1>
     </div>
     <h2>Player Bio</h2>
     <p><b>Age</b>: {{ playerBio.age }}</p>
     <p><b>Height</b>: {{ playerBio.height }}</p>
     <p><b>Weight</b>: {{ playerBio.weight }}</p>
     <p><b>Position</b>: {{ playerBio.position }}</p>
-    <p><b>Bats</b>: {{ playerBio.Bats }}</p>
-    <p><b>Throws</b>: {{ playerBio.Throws }}</p>
+    <p><b>Bats</b>: {{ playerBio.bats }}</p>
+    <p><b>Throws</b>: {{ playerBio.throws }}</p>
     <p><b>Team</b>: {{ playerBio.team }}</p>
     <p><b>Number</b>: {{ playerBio.number }}</p>
     

@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import requests
 import ast
+import redis
+import io
 
 app = Flask(__name__)
+r = redis.Redis(host='redis', port=6379, db=0)
 
 @app.route('/viewPlayer/<player_name>')
 def getplayer_report(player_name):
@@ -38,7 +41,7 @@ def getplayer_report(player_name):
     playerFieldingPitchingStr = "{" + playerFieldingPitchingStr[1] + "}"
     fielding_pitchingStats = ast.literal_eval(playerFieldingPitchingStr)
 
-    return render_template('getPlayerHTML.html', playerBio=playerBio, battingStats=battingStats, fielding_pitchingStats=fielding_pitchingStats)
+    return render_template('getPlayerHTML.html', playerBio=playerBio, battingStats=battingStats, fielding_pitchingStats=fielding_pitchingStats,player_name=player_name)
 
 @app.route('/', methods=['GET'])
 def addNewPlayer():
@@ -47,6 +50,9 @@ def addNewPlayer():
 @app.route('/AddNewPlayerBatting', methods=['POST'])
 def addNewPlayerBatting():
     playerName = request.form['name']
+     
+    #store Headshot in redis
+    storeHeadshot(playerName)
     requests.post("http://player-bio:5005/storeplayerBio", data=request.form.to_dict())
     return render_template('addNewPlayerBattingHTML.html', playerName=playerName)
 
@@ -62,5 +68,36 @@ def addNewPlayerComplete():
     requests.post("http://player-fielding-pitching:5005/storeplayerFieldingPitching", data=request.form.to_dict())
     return render_template('addNewPlayerCompleteHTML.html', playerName=playerName)
 
+@app.route('/getHeadshot/<player_name>')
+def getHeadshot(player_name):
+    player_name = player_name.lower().strip()
+    player_name = player_name.replace(" ", "_")
+
+    image_data = r.hget(f'headshot:{player_name.lower()}', 'data')
+    mimetype = r.hget(f'headshot:{player_name.lower()}', 'mimetype')
+   
+    if not image_data or not mimetype:
+        return send_file('static/defaultHeadshot.png', mimetype='image/png')
+    
+    # Send image file to HTML template
+    return send_file(
+        # Create a in memory file object to send the image bytes.
+        io.BytesIO(image_data),
+        mimetype=mimetype.decode('utf-8')
+    )
+
+
+def storeHeadshot(player_name):
+   
+    player_name = player_name.lower().strip()
+    player_name = player_name.replace(" ", "_")
+    image_data = request.files['headshot'].read()
+    mimetype = request.files['headshot'].mimetype
+
+    r.hset(f'headshot:{player_name}', mapping={
+        'data': image_data,
+        'mimetype': mimetype
+    })
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005)

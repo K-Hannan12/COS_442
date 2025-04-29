@@ -5,7 +5,7 @@
     </head>
     <body>
         <h1>Add New Team</h1>
-        <form method="POST" action="/addNewTeamComplete">
+        <form method="POST" action="/addNewTeamComplete" enctype="multipart/form-data">
             <label for="teamName"><b>Team Name</b>:</label><br>
             <input type="text" id="teamName" name="teamName"required><br><br>
             
@@ -54,6 +54,9 @@
 
             <label for="last_world_series_won"><b>Last World Series Won</b></label><br>
             <input type="text" id="last_world_series_won" name="last_world_series_won"required><br><br>
+
+            <label for="team_logo"><b>Upload Team Logo</b></label><br>
+            <input type="file" id="team_logo" name="team_logo"><br><br>
 
             <input type="submit" value="Add Team">
         </form>
