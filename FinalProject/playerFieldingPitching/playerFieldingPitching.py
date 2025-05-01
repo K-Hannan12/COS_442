@@ -10,7 +10,10 @@ def getplayerFieldingPitching(player_name):
     
     playerFieldingPitching = redisDB.hgetall(f'{player_name}:feildingPitching')
     if not playerFieldingPitching:
-        return 'Player not found', 404
+        return f'''
+        <h2>Player {player_name} not found. Please check the name and try again.</h2>
+        <a>href="/"><button>Go back to the home page</button</a>
+        ''', 404
     playerFieldingPitchingStr = str(playerFieldingPitching).strip('{').strip('}')
     playerFieldingPitchingStr = f'{player_name}\'s Fielding and Pitching Stats = {playerFieldingPitchingStr}'
     return playerFieldingPitchingStr, 200
