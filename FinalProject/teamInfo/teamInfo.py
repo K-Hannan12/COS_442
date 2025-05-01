@@ -37,7 +37,6 @@ def addTeamInfo():
     }
     #This will store the team info in the redis database.
     redisDB.hset(f'{team_name}:info', mapping=teamInfo)
-
     return 'Player bio stored', 200
 
 if __name__ == '__main__':

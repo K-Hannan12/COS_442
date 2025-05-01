@@ -30,6 +30,11 @@ def storeplayerBio():
     'bats': request.form['bats'],
     'throws': request.form['throws']
     }
+    team_name = player_bio['team'].lower().replace(" ", "_")
+   # add the player to the team in redis
+    redisDB.sadd(f'{team_name}:players', f'{request.form['name']}: {player_bio['number']}')
+
+
     #store the players bio information in the redis database
     redisDB.hset(f'{player_name}:bio', mapping=player_bio)
     return 'Player bio stored', 200

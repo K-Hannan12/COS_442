@@ -5,7 +5,7 @@ import redis
 import io
 
 app = Flask(__name__)
-r = redis.Redis(host='redis', port=6379, db=0)
+redisDB = redis.Redis(host='redis', port=6379, db=0)
 
 @app.route('/viewPlayer/<player_name>')
 def getplayer_report(player_name):
@@ -73,8 +73,8 @@ def getHeadshot(player_name):
     player_name = player_name.lower().strip()
     player_name = player_name.replace(" ", "_")
 
-    image_data = r.hget(f'headshot:{player_name.lower()}', 'data')
-    mimetype = r.hget(f'headshot:{player_name.lower()}', 'mimetype')
+    image_data = redisDB.hget(f'headshot:{player_name.lower()}', 'data')
+    mimetype = redisDB.hget(f'headshot:{player_name.lower()}', 'mimetype')
    
     if not image_data or not mimetype:
         return send_file('static/defaultHeadshot.png', mimetype='image/png')
@@ -94,7 +94,7 @@ def storeHeadshot(player_name):
     image_data = request.files['headshot'].read()
     mimetype = request.files['headshot'].mimetype
 
-    r.hset(f'headshot:{player_name}', mapping={
+    redisDB.hset(f'headshot:{player_name}', mapping={
         'data': image_data,
         'mimetype': mimetype
     })

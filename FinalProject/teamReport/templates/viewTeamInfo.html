@@ -35,8 +35,8 @@
 </head>
 <body>
     <div class="header">
-        <img src="/getTeamLogo/{{ teamInfo.name }}" alt="Headshot of {{ teamInfo.name}}">
-        <h1 class="team-name"> {{ teamInfo.name }}</h1>
+        <img src="/getTeamLogo/{{ team_name }}" alt="Headshot of {{ team_name }}">
+        <h1 class="team-name"> {{ team_name }}</h1>
  </div>
     <h2>Team Information</h2>
     <p><b>Year Founded</b>: {{ teamInfo.founding_year }}</p>
@@ -53,5 +53,8 @@
     <p><b>Last World Series Won</b>: {{ teamInfo.last_world_series_won }}</p>
     </br>
     <h2>Team Roster</h2>
+    <div>
+        {{ player_table | safe }}
+    </div>
 </body>
 </html>
