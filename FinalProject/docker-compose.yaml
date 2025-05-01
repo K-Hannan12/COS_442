@@ -1,5 +1,4 @@
 services:
-#this will need to change when I create the apps
   player-report:
     build:
       context: ./playerReport
