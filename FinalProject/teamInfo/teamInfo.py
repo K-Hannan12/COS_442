@@ -6,7 +6,7 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 
 # This route will get a teams information from the redis database.
 @app.route('/getTeamInfo/<team_name>')
-def getplayerBatting(team_name):
+def getTeamInfo(team_name):
     team_name_toDB = team_name.lower().replace(" ", "_")
     
     #Get the teams info from the redis database

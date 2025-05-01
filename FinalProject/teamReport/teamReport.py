@@ -22,16 +22,20 @@ def getTeamReport(team_name):
     teamInfoStr = teamInfoResponse.text.split('=')
     teamInfoStr = "{" + teamInfoStr[1] + "}"
     teamInfo = ast.literal_eval(teamInfoStr)
-
+    
     # get players that are on the team
-    players = redisDB.smembers(f'{team_nameToPassToDB}:players')
+    team_name_set = team_name.lower().replace(" ", "_").strip()
+    players = redisDB.smembers(f'{team_name_set}:players')
     
     #Create HTML table to display the players
-    players_table = "<table><tr><th>Player Name</th><th>Player Number</th></tr>"
+    players_table = "<table><tr><th>Player Name</th><th>Position</th><th>Number</th></tr>"
     for player in players:
         player_str = player.decode('utf-8') 
-        player_name, player_number = player_str.split(':').strip()
-        players_table += f"<tr><td>{player_name}</td><td>{player_number}</td></tr>"
+        player_name, player_number,player_position = player_str.split(':')
+        player_name = player_name.strip()
+        player_number = player_number.strip()
+        player_position = player_position.strip()
+        players_table += f"<tr><td>{player_name}</td><td>{player_position}</td><td>{player_number}</td></tr>"
     players_table += "</table>"
 
     return render_template('viewTeamInfo.html',teamInfo=teamInfo, playerTable=players_table, team_name=team_name)
