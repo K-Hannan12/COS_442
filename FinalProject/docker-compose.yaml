@@ -27,13 +27,19 @@ services:
   team-report:
     build:
       context: ./teamReport
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     expose:
       - "5005"
   team-info:
     build:
       context: ./teamInfo
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
+    expose:
+      - "5005"
+  home-page:
+    build:
+      context: ./homePage
+      dockerfile: Dockerfile
     expose:
       - "5005"
   nginx:
@@ -49,8 +55,8 @@ services:
       - player-fielding-pitching
       - team-report
       - team-info
+      - home-page
       - redis
-
   redis:
     image: "redis"
     ports:
