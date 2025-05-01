@@ -12,7 +12,10 @@ def getTeamInfo(team_name):
     #Get the teams info from the redis database
     teamInfo = redisDB.hgetall(f'{team_name_toDB}:info')
     if not teamInfo:
-        return 'Team not found', 404
+         return f'''
+        <h2>Team {team_name} not found. Please check the name and try again.</h2>
+        <a>href="/"><button>Go back to the home page</button</a>
+        ''', 404
     teamInfoStr = str(teamInfo).strip('{').strip('}')
     teamInfoStr = f'{team_name} = {teamInfoStr}'
     return teamInfoStr, 200
