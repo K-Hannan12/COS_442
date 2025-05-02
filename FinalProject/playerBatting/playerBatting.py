@@ -10,10 +10,7 @@ def getplayerBatting(player_name):
 
     playerBatting = redisDB.hgetall(f'{player_name}:batting')
     if not playerBatting:
-        return f'''
-        <h2>Player {player_name} not found. Please check the name and try again.</h2>
-        <a>href="/"><button>Go back to the home page</button</a>
-        ''', 404
+        return f'Player {player_name} not found', 404
     playerBattingStr = str(playerBatting).strip('{').strip('}')
     playerBattingStr = f'{player_name}\'s Batting Stats = {playerBattingStr}'
     

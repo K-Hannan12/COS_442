@@ -14,7 +14,10 @@ def getplayer_report(player_name):
     player_nameToPassToDB = player_name.replace(" ", "%20")
     responseBio = requests.get(f"http://player-bio:5005/getplayerBio/{player_nameToPassToDB}")
     if responseBio.status_code != 200:
-        return render_template_string(responseBio.text)
+        return render_template_string(f'''
+        <h2>Player {player_name} not found. Please check the name and try again.</h2>
+        <a href="/"><button>Go back to the home page</button</a>
+        ''')
     
     #Turn string into a dictionary
     playerBioStr = responseBio.text.split('=')
@@ -24,7 +27,10 @@ def getplayer_report(player_name):
     # Get the players batting stats from the batting service
     responseBatting = requests.get(f"http://player-batting:5005/getplayerBatting/{player_nameToPassToDB}")
     if responseBatting.status_code != 200:
-        return render_template_string(responseBatting.text)
+        return render_template_string(f'''
+        <h2>Player {player_name} not found. Please check the name and try again.</h2>
+        <a href="/"><button>Go back to the home page</button</a>
+        ''')
     
     # Turn batting stats str into a dictionary
     playerBattingStr = responseBatting.text.split('=')
@@ -34,7 +40,10 @@ def getplayer_report(player_name):
     # Get the players fielding and pitching stats from the fielding-pitching service
     responseFielding_pitching = requests.get(f"http://player-fielding-pitching:5005/getplayerFieldingPitching/{player_nameToPassToDB}")
     if responseFielding_pitching.status_code != 200:
-        return render_template_string(responseFielding_pitching.text)
+        return render_template_string(f'''
+        <h2>Player {player_name} not found. Please check the name and try again.</h2>
+        <a href="/"><button>Go back to the home page</button</a>
+        ''')
     
     # Turn fielding and pitching stats into a dictionary
     playerFieldingPitchingStr = responseFielding_pitching.text.split('=')

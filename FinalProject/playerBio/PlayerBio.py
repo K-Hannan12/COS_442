@@ -11,10 +11,7 @@ def getplayerBio(player_name):
     #get the players bio information from the redis database
     playerBio = redisDB.hgetall(f'{player_name_to_DB}:bio') 
     if not playerBio:
-        return f'''
-        <h2>Player {player_name} not found. Please check the name and try again.</h2>
-        <a>href="/"><button>Go back to the home page</button</a>
-        ''', 404
+        return f'Player {player_name} not found', 404
     playerBioStr = str(playerBio).strip('{').strip('}')
     playerBioStr = f'{player_name}\'s Bio = {playerBioStr}'
     

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, render_template_string, request, send_file
 import requests
 import ast
 import redis
@@ -16,7 +16,10 @@ def getTeamReport(team_name):
     team_nameToPassToDB = team_name.replace(" ", "%20")
     teamInfoResponse = requests.get(f"http://team-info:5005/getTeamInfo/{team_nameToPassToDB}")
     if teamInfoResponse.status_code != 200:
-        return f'Error: {teamInfoResponse} {team_name} not found'
+        return render_template_string(f'''
+        <h2>{team_name} not found. Please check the name and try again.</h2>
+        <a href="/"><button>Go back to the home page</button</a>
+        ''')
     
     # This will convert the response string into a dictionary.
     teamInfoStr = teamInfoResponse.text.split('=')
