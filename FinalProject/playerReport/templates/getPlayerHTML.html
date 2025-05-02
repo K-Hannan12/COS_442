@@ -13,6 +13,16 @@
             width: auto;
             border-radius: 8px;
         }
+        .homeButton {
+            margin-left: auto;
+            margin-right: 25px;
+        }
+        .homeButton button {
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -20,7 +30,6 @@
             font-size: 1rem;
             text-align: center;
         }
-
         th, td {
             padding: 12px;
             border: 1px solid #ccc;
@@ -29,8 +38,9 @@
 </head>
 <body>
     <div class="header">
-           <img src="/getHeadshot/{{ player_name }}" alt="Headshot of {{ player_name }}"/>
+            <img src="/getHeadshot/{{ player_name }}" alt="Headshot of {{ player_name }}"/>
             <h1>{{ player_name }}</h1>
+            <a class="homeButton" href="/"><button>Go Back To Home</button></a>
     </div>
     <h2>Player Bio</h2>
     <p><b>Age</b>: {{ playerBio.age }}</p>

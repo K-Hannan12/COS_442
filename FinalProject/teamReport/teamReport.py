@@ -29,17 +29,19 @@ def getTeamReport(team_name):
     # get players that are on the team
     team_name_set = team_name.lower().replace(" ", "_").strip()
     players = redisDB.smembers(f'{team_name_set}:players')
-    
-    #Create HTML table to display the players
-    players_table = "<table><tr><th>Player Name</th><th>Position</th><th>Number</th></tr>"
-    for player in players:
-        player_str = player.decode('utf-8') 
-        player_name, player_number,player_position = player_str.split(':')
-        player_name = player_name.strip()
-        player_number = player_number.strip()
-        player_position = player_position.strip()
-        players_table += f"<tr><td>{player_name}</td><td>{player_position}</td><td>{player_number}</td></tr>"
-    players_table += "</table>"
+    if not players:
+        players_table = "<h3>No Players Found for this Team</h3>"
+    else:
+        #Create HTML table to display the players
+        players_table = "<table><tr><th>Player Name</th><th>Position</th><th>Number</th></tr>"
+        for player in players:
+            player_str = player.decode('utf-8') 
+            player_name, player_number,player_position = player_str.split(':')
+            player_name = player_name.strip()
+            player_number = player_number.strip()
+            player_position = player_position.strip()
+            players_table += f"<tr><td>{player_name}</td><td>{player_position}</td><td>{player_number}</td></tr>"
+        players_table += "</table>"
 
     return render_template('viewTeamInfo.html',teamInfo=teamInfo, playerTable=players_table, team_name=team_name)
 
