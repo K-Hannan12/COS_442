@@ -1,0 +1,61 @@
+events {
+    worker_connections 1024;
+}
+
+http {
+    server {
+        listen 80;
+
+        location /{
+            proxy_pass http://home-page:5005/;
+        }
+	    location /viewPlayer {
+            proxy_pass http://player-report:5005/viewPlayer;
+        }
+        location /getPlayerBatting {
+            proxy_pass http://player-batting:5005/getplayerBatting;
+        }
+        location /getPlayerBio {
+            proxy_pass http://player-bio:5005/getplayerBio;
+        }
+        location /getPlayerFieldingandPitching {
+            proxy_pass http://player-fielding-pitching:5005/getplayerFieldingPitching;
+        }
+        location /getHeadshot {
+            proxy_pass http://player-report:5005/getHeadshot;
+        }
+         location /viewTeam {
+            proxy_pass http://team-report:5005/;
+        }
+        location /getTeamInfo {
+            proxy_pass http://team-info:5005/getTeamInfo;
+        }
+        location /getTeamLogo {
+            proxy_pass http://team-report:5005/getTeamLogo;
+        } 
+        location /addNewTeam {
+            proxy_pass http://team-report:5005/addTeamInfo;
+        }
+        location /addNewTeamComplete {
+            proxy_pass http://team-report:5005/addNewTeamComplete;
+        }
+        location /addNewPlayer {
+            proxy_pass http://player-report:5005/;
+        }
+        location /AddNewPlayerBatting {
+            proxy_pass http://player-report:5005/AddNewPlayerBatting;
+        }
+        location /AddNewPlayerFieldingPitching {
+            proxy_pass http://player-report:5005/AddNewPlayerFieldingPitching;
+        }
+        location /AddNewPlayerComplete {
+            proxy_pass http://player-report:5005/AddNewPlayerComplete;
+        }
+        location /searchForPlayer {
+            proxy_pass http://home-page:5005/searchForPlayer;
+        }
+        location /searchForTeam {
+            proxy_pass http://home-page:5005/searchForTeam;
+        }
+    }
+}  
