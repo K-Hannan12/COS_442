@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home Page</title>
+        <style>
+            .header {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .pageContent{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: auto;
+            }
+            .Players, .Teams {
+                margin: 20px;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Welcome to the Kaleb Hannan's Baseball Stats System</h1>
+        </div>
+        <div class="pageContent"></div>
+            <div class="Players">
+                <h2>Click Here to add a New Player</h2>
+                <a href="/addNewPlayer"><button>Add New Player</button></a>
+                </br>
+                <h2>Search for a Player Here</h2>
+                <form action="/searchForPlayer" method="post">
+                    <input type="text" name="player_name" placeholder="Enter Player Name" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="Teams">
+                <h2>Click Here to add a New Team</h2>
+                <a href="/addNewTeam"><button>Add New Team</button></a>
+                </br>
+                <h2>Search for a Team Here</h2>
+                <form action="/searchForTeam" method="post">
+                    <input type="text" name="team_name" placeholder="Enter Team Name" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file,render_template_string
 import requests
 import ast
 import redis
@@ -14,7 +14,7 @@ def getplayer_report(player_name):
     player_nameToPassToDB = player_name.replace(" ", "%20")
     responseBio = requests.get(f"http://player-bio:5005/getplayerBio/{player_nameToPassToDB}")
     if responseBio.status_code != 200:
-        return f'Error: {responseBio.status_code} {player_name} not found'
+        return render_template_string(responseBio.text)
     
     #Turn string into a dictionary
     playerBioStr = responseBio.text.split('=')
@@ -24,7 +24,7 @@ def getplayer_report(player_name):
     # Get the players batting stats from the batting service
     responseBatting = requests.get(f"http://player-batting:5005/getplayerBatting/{player_nameToPassToDB}")
     if responseBatting.status_code != 200:
-        return f'Error: {responseBatting.status_code} {player_name} not found'
+        return render_template_string(responseBatting.text)
     
     # Turn batting stats str into a dictionary
     playerBattingStr = responseBatting.text.split('=')
@@ -34,7 +34,7 @@ def getplayer_report(player_name):
     # Get the players fielding and pitching stats from the fielding-pitching service
     responseFielding_pitching = requests.get(f"http://player-fielding-pitching:5005/getplayerFieldingPitching/{player_nameToPassToDB}")
     if responseFielding_pitching.status_code != 200:
-        return f'Error: {responseFielding_pitching.status_code} {player_name} not found'
+        return render_template_string(responseFielding_pitching.text)
     
     # Turn fielding and pitching stats into a dictionary
     playerFieldingPitchingStr = responseFielding_pitching.text.split('=')
