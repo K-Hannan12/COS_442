@@ -6,9 +6,9 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 
 @app.route('/getplayerFieldingPitching/<player_name>')
 def getplayerFieldingPitching(player_name):
-    player_name = player_name.lower().replace(" ", "_")
+    player_name_to_db = player_name.lower().replace(" ", "_")
     
-    playerFieldingPitching = redisDB.hgetall(f'{player_name}:feildingPitching')
+    playerFieldingPitching = redisDB.hgetall(f'{player_name_to_db}:feildingPitching')
     if not playerFieldingPitching:
         return f'Player {player_name} not found', 404
     playerFieldingPitchingStr = str(playerFieldingPitching).strip('{').strip('}')

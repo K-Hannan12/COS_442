@@ -6,9 +6,9 @@ redisDB = redis.Redis(host='redis', port=6379 , decode_responses=True)
 
 @app.route('/getplayerBatting/<player_name>')
 def getplayerBatting(player_name):
-    player_name = player_name.lower().replace(" ", "_")
+    player_name_to_db = player_name.lower().replace(" ", "_")
 
-    playerBatting = redisDB.hgetall(f'{player_name}:batting')
+    playerBatting = redisDB.hgetall(f'{player_name_to_db}:batting')
     if not playerBatting:
         return f'Player {player_name} not found', 404
     playerBattingStr = str(playerBatting).strip('{').strip('}')
