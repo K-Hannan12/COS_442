@@ -65,7 +65,7 @@ def getTeamLogo(team_name):
     mimetype = redisDB.hget(f'teamLogo:{team_name.lower()}', 'mimetype')
    
     if not image_data or not mimetype:
-        return send_file('static/defaultHeadshot.png', mimetype='image/png')
+        return send_file('static/placeHolder.png', mimetype='image/png')
     
     # Send image file to HTML template
     return send_file(
